@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.EmployeeMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultType" type="com.example.entity.Employee">
+        <id column="employee_no" property="employeeNo"/>
+        <result column="username" property="username" />
+        <result column="password" property="password"/>
+        <result column="position" property="position" />
+        <result column="email" property="email" />
+        <result column="telephone" property="telephone"/>
+
+
+    </resultMap>
+
+    <update id="update">
+        update employee set username=#{username},position=#{position },email=#{email},telephone=#{telephone}
+        where employee_no=#{employeeNo}
+    </update>
+
+    <select id="showEmployee" resultType="com.example.entity.Employee">
+        select
+        *
+        from employee;
+    </select>
+    <select id="getByManager" resultType="com.example.entity.Employee">
+        select *
+        from employee
+        where position = "cleaner" or position = "repersonnel"
+    </select>
+    <update id="reset">
+        update employee set password="123456"
+    </update>
+</mapper>

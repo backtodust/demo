@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RoomMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.entity.Room">
+        <id column="room_no" property="roomNo"/>
+        <result column="room_id" property="roomId" />
+        <result column="room_price" property="roomPrice"/>
+        <result column="room_location" property="roomLocation" />
+        <result column="room_state" property="roomState" />
+
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+
+
+    <update id="editRoom">
+update book set room_id =#{roomId},room_price=#{roomPrice},room_location=#{roomLocation} where room_no=#{roomNo}
+</update>
+    <select id="getAll" resultType="com.example.entity.Room">
+        select
+       *
+        FROM
+        room
+
+    </select>
+    <select id="likeRid" resultType="com.example.entity.Room">
+        select
+         *
+        from
+      room
+        where room_id like CONCAT('%',#{roomId},'%')
+    </select>
+
+    <select id="getRoom" resultType="com.example.entity.Room">
+        select
+         *
+        FROM
+      room
+      where room_id=#{roomId}
+    </select>
+
+</mapper>
