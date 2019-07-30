@@ -95,7 +95,7 @@
         <div id="personInfor">
             <p id="adminid" th:text="'亲爱的管理员'+${adminid}+'，欢迎您！'"p> </p>
             <p>
-                <a href="adminlogin.jsp">退出登录</a>
+                <a href="/logout">退出登录</a>
             </p>
         </div>
         <div class="meun-title">房间管理</div>
@@ -217,7 +217,7 @@
 
 
 
-                                <td> <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" onclick="R_values(${Room.getRoomLocation})" > change</button></td>
+                                <td> <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal" onclick="R_values([[${dict.dictValue}]])" > change</button></td>
                                 <td>  <form method="post" action="deleteroomServlet" >
                                     <input type="hidden" name="room_no" value="<%=room.getRoom_no()%>"/>
                                     <input type="submit" class="btn btn-sm btn-warning" value="delete" />
@@ -259,7 +259,7 @@
                                                             <option value="doubleroom">doubleroom</option>
                                                             <option value="bigbedroom">bigbedroom</option>
                                                         </select></td></tr>
-                                                <input type="hidden" name="room_no" id="room_no">
+                                                <input type="text" name="room_no" id="room_no">
                                                 <tr> <td><input type="submit" value="SUBMIT"></td></tr>
 
                                             </table>

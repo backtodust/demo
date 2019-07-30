@@ -54,9 +54,10 @@ public class BookController {
         else return "已有的房间号！";
     }
     @RequestMapping(value ="/admin" ,method = RequestMethod.GET)
-    public String admin(HashMap<String,Object>map, Model model){
+    public String admin(@ModelAttribute(value="adminid") String adminid,HashMap<String,Object>map, Model model){
         List<Room> rooms=roomservice.getAll();
         List<Employee> employees=employeeService.showEmployee();
+        model.addAttribute("adminid",adminid);
         model.addAttribute("rooms",rooms);
         model.addAttribute("hello","hello");
         model.addAttribute("admin","adminname");
