@@ -57,8 +57,8 @@
         })
     </script>
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
     <![endif]-->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/common.css" />
@@ -144,16 +144,16 @@
                         <h1 align="center">添加房间</h1>
                     </div>
                     <div style="padding: 50px 0;margin-top: 50px;background-color: #fff; text-align: right;width: 420px;margin: 50px auto;">
-                        <form class="form-horizontal" action="addroomServlet" method="post">
+                        <form class="form-horizontal" action="/room/addroom" method="post">
                             <div class="form-group ">
                                 <label for="rid" class="col-xs-3 control-label">房间ID：</label>
                                 <div class="col-xs-8 ">
-                                    <input type="" name="room_id" class="form-control input-sm duiqi" id="rid" placeholder="">
+                                    <input type="" name="roomId" class="form-control input-sm duiqi" id="rid" placeholder="">
                                 </div>
                             </div>
                             <label for="rty" class="col-xs-3 control-label">房间型号:</label>
                             <div  class="form-group">
-                                <select class="form-control"style="width: 200px;height: 30px" name="room_type"  id="rty" >
+                                <select class="form-control"style="width: 200px;height: 30px" name="roomType"  id="rty" >
                                     <option value="singleroom">singleroom</option>
                                     <option  value="doubleroom">doubleroom</option>
                                     <option  value="bigbedroom">bigbedroom</option>
@@ -166,13 +166,13 @@
                             <div class="form-group">
                                 <label for="pri" class="col-xs-3 control-label">客房价格：</label>
                                 <div class="col-xs-8">
-                                    <input type="" name="room_price" class="form-control input-sm duiqi" id="pri" placeholder="">
+                                    <input type="" name="roomPrice" class="form-control input-sm duiqi" id="pri" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="loc" class="col-xs-3 control-label">客房位置：</label>
                                 <div class="col-xs-8">
-                                    <input type="" name="room_location" class="form-control input-sm duiqi" id="loc" placeholder="">
+                                    <input type="" name="roomLocation" class="form-control input-sm duiqi" id="loc" placeholder="">
                                 </div>
                             </div>
 
@@ -341,9 +341,14 @@
                     <!--</div>-->
                     <!--<% String c = (String)request.getAttribute("reset");-->
                     <!--if("true".equals(c)){%>-->
-                    <!--<script type="text/javascript">alert("reset success"); $(document).ready(function(){-->
-                        <!--$("#taggle3").click();-->
-                    <!--});</script>-->
+             <span th:if="${flag}!=null">
+
+                        <script  th:inline="javascript">
+                            alert("sdsadasd");
+                            $("taggle2").click();
+                            </script>
+                   </span>
+
                     <!--<% }else if("false".equals(c)){%>-->
                     <!--<script type="text/javascript">alert("error");-->
                     <!--$(document).ready(function(){-->

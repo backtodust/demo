@@ -7,6 +7,7 @@ import com.example.mapper.RoomMapper;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,7 +20,7 @@ public class RoomService extends ServiceImpl<RoomMapper,Room> {
     @Resource
     private RoomMapper roomMapper;
 public int addRoom(Room room)
-{
+{System.out.println(room);
     if(roomMapper.getRoom(room.getRoomId())==null) {
         roomMapper.insert(room);
         return 0;

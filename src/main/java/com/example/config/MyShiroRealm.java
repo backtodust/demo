@@ -48,6 +48,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         List<Role> roles = userService.getRoles(uid);
         int roleId = roles.get(0).getId();
         List<Permission> permissions = userService.getPermissions(roleId);
+        System.out.println(permissions.toArray().length);
         roles.get(0).setPermissions(permissions);
         userInfo.setRoleList(roles);
         // 加密方式;

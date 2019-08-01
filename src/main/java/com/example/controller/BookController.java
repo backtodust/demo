@@ -18,12 +18,15 @@ package com.example.controller;
 
 import com.example.entity.Employee;
 import com.example.entity.Room;
+import com.example.entity.User;
 import com.example.service.EmployeeService;
 import com.example.service.RoomService;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sun.security.pkcs11.Secmod;
 
 import java.util.HashMap;
@@ -45,12 +48,16 @@ public class BookController {
     @Autowired
     private EmployeeService employeeService;
     @RequestMapping(value = "/addroom")
-    @ResponseBody
 
-    public String addroom(Room room) {
-        if(roomservice.addRoom(room)==0)
 
-        return "SuccessResponseData.success()";
+    public String addroom(Room room, RedirectAttributes attr) {
+        if(roomservice.addRoom(room)==0) {
+            attr.addAttribute("flag",0);
+            User id= (User) SecurityUtils.getSubject().getPrincipal();
+            System.out.println(id);
+            attr.addAttribute("adminid",id.getName());
+            return "redirect:/room/admin";
+        }
         else return "已有的房间号！";
     }
     @RequestMapping(value ="/admin" ,method = RequestMethod.GET)

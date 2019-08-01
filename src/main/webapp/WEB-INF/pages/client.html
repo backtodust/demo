@@ -63,15 +63,13 @@
 
 <![endif]-->
 <script>
-    function jump(){
-        window.location.href="http://localhost:8080/login.jsp";
-    }
+
     function jump3(){
 
         window.location.href="http://localhost:8080/information.jsp";
     }
     function jump1(){
-        window.location.href="http://localhost:8080/loading.jsp";
+        window.location.href="http://localhost:8090/login";
     }
     function jump2(){
         window.location.href="http://localhost:8080/change.jsp";
@@ -135,20 +133,20 @@
                 <ul>
 
                     <li class="header-top-contact">
-                        <div th:text="${session.id}"></div>
-                        <button type="button" class="btn btn-sm btn-green" onclick="jump()">亲爱的用户
-                            <span  id="s1"> </span>，你好！
+
+                        <button type="button" class="btn btn-sm btn-green"  onclick="jump1()">亲爱的用户
+                           ，你好！
                         </button>
 
-                    </li>
-                    <li class="header-top-contact">
-                        <button type="button" class="btn btn-sm btn-green" onclick="jump3()">修改信息</button>
-                        <button type="button" class="btn btn-sm btn-green" onclick="jump2()">修改密码</button>
-                        <button type="button" class="btn btn-sm btn-green" onclick="jump1()">退出登录</button>
-                    </li>
-                </ul>
-            </div>
-        </li>
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--<li class="header-top-contact">-->
+                        <!--<button type="button" class="btn btn-sm btn-green" onclick="jump3()">修改信息</button>-->
+                        <!--<button type="button" class="btn btn-sm btn-green" onclick="jump2()">修改密码</button>-->
+                        <!--<button type="button" class="btn btn-sm btn-green" onclick="jump1()">退出登录</button>-->
+                    <!--</li>-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</li>-->
     </ul>
 
 </header><!--/.header-top-->
@@ -493,7 +491,7 @@
 <!--footer start-->
 
 
-    <div id="scroll-Top">
+    <div id="scroll-Top1">
         <div class="return-to-top">
             <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
                data-original-title="Back to Top" aria-hidden="true"></i>
