@@ -26,32 +26,44 @@ public  class CaptchaValidateFilter extends AccessControlFilter {
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue)
             throws Exception {
         // 从session获取正确的验证码
+
         Session session = SecurityUtils.getSubject().getSession();
+
         //页面输入的验证码
         String name=getName(request);
-        String validateCode = (String)session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+        String validateCode = (String)session.getAttribute("vrifyCode");
         String captchaCode = getCaptchaCode(request);
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
+
         //判断验证码是否表单提交（允许访问）
-        if ( !"post".equalsIgnoreCase(httpServletRequest.getMethod())) {
-            return true;
-        }
+//        if ( !"post".equalsIgnoreCase(httpServletRequest.getMethod())) {
+//            return true;
+//        }
         // 若验证码为空或匹配失败则返回false
         if(captchaCode == null) {
-            return false;
+
+    return false;
+
         } else if (validateCode != null) {
             captchaCode = captchaCode.toLowerCase();
             validateCode = validateCode.toLowerCase();
+
             if(!captchaCode.equals(validateCode)) {
-                return false;
+                request.setAttribute(failureKeyAttribute, "验证码错误");
+
             }
         }
-        return true;
+        System.out.println(validateCode+"sdasdasd");
+
+ return true;
+
     }
+
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         //如果验证码失败了，存储失败key属性
-        request.setAttribute(failureKeyAttribute, "验证码错误");
+
+        System.out.println("asdasdad");
         return true;
     }
     public String getCaptchaParam() {

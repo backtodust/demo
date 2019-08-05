@@ -93,7 +93,7 @@
             <p id="logoP"><img id="logo" alt="旅馆管理系统" src="/images/dong.jpg"><span>旅馆管理系统</span></p>
         </div>
         <div id="personInfor">
-            <p id="adminid" th:text="'亲爱的管理员'+${adminid}+'，欢迎您！'"p> </p>
+            <p id="adminid" th:text="'亲爱的管理员'+${adminid}+'，欢迎您！'"> </p>
             <p>
                 <a href="/logout">退出登录</a>
             </p>
@@ -540,25 +540,12 @@
                         <td align="center">上班时间</td>
                         <td align="center">下班时间</td>
                     </tr>
-                    <c:forEach items="${wrs}" var="workrecord" varStatus="st">
-                        <tr>
 
-                            <td align="center" width="10%">${workrecord.record_no}</td>
-                            <td align="center" width="10%">${workrecord.staff_no}</td>
-                            <td align="center" width="10%">${workrecord.username}</td>
-                            <td align="center" width="10%">${workrecord.start_time}</td>
-                            <td align="center" width="10%">${workrecord.end_time}</td>
-
-
-                        </tr>
-                    </c:forEach>
                 </table>
-                <% String recordshow = (String)request.getAttribute("recordshow");
 
-                if(recordshow!=null)
-                if (recordshow.equals("1"))
-                {%>
                 <script type="text/javascript">
+                    var ssflag=request.getAttribute("adminid");
+                    if (ssflag!=null)
                     $(document).ready(function(){
                         $("#taggle5").click();
                         recordshow="0";
@@ -791,6 +778,7 @@
             </div>
         </div>
     </div>
+</div>
     <script src="/js/jquery.nouislider.js"></script>
 </body>
 </html>

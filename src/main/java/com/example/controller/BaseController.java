@@ -49,10 +49,8 @@ public class BaseController {
             } else if (IncorrectCredentialsException.class.getName().equals(exception)) {
                 System.out.println("IncorrectCredentialsException -- > 密码不正确：");
                 msg = "IncorrectCredentialsException -- > 密码不正确：";
-            } else if (imgvrifyControllerDefaultKaptcha(request,response)) {
-                System.out.println("kaptchaValidateFailed -- > 验证码错误");
-                msg = "kaptchaValidateFailed -- > 验证码错误";
-            } else {
+            }
+             else {
                 msg = "else >> " + exception;
                 System.out.println("else -- >" + exception);
             }
@@ -96,19 +94,19 @@ public class BaseController {
         responseOutputStream.close();
     }
 
-    @RequestMapping("/checkCode")
-    @ResponseBody
-    public boolean imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
-        String captchaId = (String) httpServletRequest.getSession().getAttribute("vrifyCode");
-        String parameter = httpServletRequest.getParameter("code");
-      System.out.println("Session  vrifyCode ---->"+captchaId+"---- form code --->"+parameter);
-        if (!captchaId.equals(parameter)) {
-            System.out.println("错误的验证码");
-            return false;
-        } else {
-            return true;
-        }
-    }
+//    @RequestMapping("/checkCode")
+//    @ResponseBody
+//    public boolean imgvrifyControllerDefaultKaptcha(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
+//        String captchaId = (String) httpServletRequest.getSession().getAttribute("vrifyCode");
+//        String parameter = httpServletRequest.getParameter("code");
+//      System.out.println("Session  vrifyCode ---->"+captchaId+"---- form code --->"+parameter);
+//        if (!captchaId.equals(parameter)) {
+//            System.out.println("错误的验证码");
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 @RequestMapping("/userInfo/userDel")
     public String del(){
         return "client";
