@@ -22,6 +22,9 @@ import com.example.entity.User;
 import com.example.service.EmployeeService;
 import com.example.service.RoomService;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +32,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sun.security.pkcs11.Secmod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 图书控制器
@@ -47,9 +53,23 @@ public class BookController {
 
     @Autowired
     private EmployeeService employeeService;
+
+
+
+
+    @ExceptionHandler({ UnauthorizedException.class, AuthorizationException.class })
+    @ResponseBody
+    public Map<String, Object> authorizationException(HttpServletRequest request, HttpServletResponse response) {
+
+            // 输出JSON
+            Map<String,Object> map = new HashMap<>();
+            map.put("code", "-998");
+            map.put("message", "无权限");
+            return map;
+
+    }
+
     @RequestMapping(value = "/addroom")
-
-
     public String addroom(Room room, RedirectAttributes attr) {
         if(roomservice.addRoom(room)==0) {
             attr.addAttribute("flag",0);
@@ -84,6 +104,7 @@ public class BookController {
 
 
     @RequestMapping(value = "/getAll")
+    @RequiresPermissions({"userInfo:viewsadasd"})
     @ResponseBody
    public List<Room> getAll(){
 

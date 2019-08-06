@@ -178,6 +178,28 @@ public class User {
     this.updateTime = updateTime;
   }
 
+  @Override
+  public String toString() {
+    return "User{" +
+            "userId=" + userId +
+            ", account='" + account + '\'' +
+            ", password='" + password + '\'' +
+            ", salt='" + salt + '\'' +
+            ", name='" + name + '\'' +
+            ", birthday=" + birthday +
+            ", sex='" + sex + '\'' +
+            ", email='" + email + '\'' +
+            ", phone='" + phone + '\'' +
+            ", roleId='" + roleId + '\'' +
+            ", status='" + status + '\'' +
+            ", createTime=" + createTime +
+            ", createUser=" + createUser +
+            ", updateTime=" + updateTime +
+            ", updateUser=" + updateUser +
+            ", version=" + version +
+            ", roleList=" + roleList +
+            '}';
+  }
 
   public long getUpdateUser() {
     return updateUser;
