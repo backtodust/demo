@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.entity.User;
+import com.example.service.RedisService;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -22,11 +23,14 @@ import java.util.Map;
 public class BaseController {
     @Autowired
     DefaultKaptcha defaultKaptcha;
+    @Autowired
+    private RedisService redisService ;
     @RequestMapping({ "/", "/index" })
     public String index(RedirectAttributes attr) {
            User id= (User)SecurityUtils.getSubject().getPrincipal();
            System.out.println(id);
-           attr.addAttribute("adminid",id.getName());
+        redisService.set("abc",id.getName());
+
         return "redirect:/room/admin";
     }
     @RequestMapping("/client")

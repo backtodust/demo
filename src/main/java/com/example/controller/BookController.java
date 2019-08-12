@@ -20,6 +20,7 @@ import com.example.entity.Employee;
 import com.example.entity.Room;
 import com.example.entity.User;
 import com.example.service.EmployeeService;
+import com.example.service.RedisService;
 import com.example.service.RoomService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.AuthorizationException;
@@ -52,6 +53,9 @@ public class BookController {
     private RoomService roomservice;
 
     @Autowired
+    private RedisService redisService;
+
+    @Autowired
     private EmployeeService employeeService;
 
 
@@ -81,9 +85,10 @@ public class BookController {
         else return "已有的房间号！";
     }
     @RequestMapping(value ="/admin" ,method = RequestMethod.GET)
-    public String admin(@ModelAttribute(value="adminid") String adminid,HashMap<String,Object>map, Model model){
+    public String admin(HashMap<String,Object>map, Model model){
         List<Room> rooms=roomservice.getAll();
         List<Employee> employees=employeeService.showEmployee();
+        String adminid=(String)redisService.get("abc");
         model.addAttribute("adminid",adminid);
         model.addAttribute("rooms",rooms);
         model.addAttribute("hello","hello");
